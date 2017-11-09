@@ -51,18 +51,19 @@ source util.sh
 
 ### Make parent script output
 ### Usually of the Form: $NAME_${timestamp}
-mkdir -p $script_output_parent
+mkdir -p $script_output_parent/configs
 
 
 ## Output of script 
 script_output=${script_output_parent}/${script_output_parent}_${protocol}_${bytes}_trial${c}
+script_config_output=${script_output_parent}/configs/${script_output_parent}_${protocol}_${bytes}_trial${c}
 
 ## Print Environment variables
-echo "Experiment Name: " $NAME  > ${script_output}_env_variables.txt
-echo "File Size: " $bytes >> ${script_output}_env_variables.txt
-echo "Current Trial: " $c >> ${script_output}_env_variables.txt
-echo "Protocol: "$protocol >> ${script_output}_env_variables.txt
-print_environment_variables >> ${script_output}_env_variables.txt
+echo "Experiment Name: " $NAME  > ${script_config_output}_env_variables.txt
+echo "File Size: " $bytes >> ${script_config_output}_env_variables.txt
+echo "Current Trial: " $c >> ${script_config_output}_env_variables.txt
+echo "Protocol: "$protocol >> ${script_config_output}_env_variables.txt
+print_environment_variables >> ${script_config_output}_env_variables.txt
 
 
 
