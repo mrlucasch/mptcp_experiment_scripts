@@ -39,8 +39,8 @@ run_mini_monitors(){
 	mkdir -p $script_output
 	date > $script_output/timestamp	
 
-	flush_tcp_cache
-	flush_cache
+	flush_tcp_cache &>/dev/null
+	flush_cache &>/dev/null
 
 
 
