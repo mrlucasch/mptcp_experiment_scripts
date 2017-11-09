@@ -23,9 +23,9 @@ run_ycsb(){
 	# echo "Running YCSB"
 	echo $1
 	cd $ycsb_location
-    ${ycsb_location}/./bin/ycsb load redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$curdir/$script_output/${NAME}_ycsb_load.txt" &> /tmp/ycsb_load.txt
+    ${ycsb_location}/./bin/ycsb load redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$curdir/$script_output/${script_output_parent}_ycsb_load.txt" &> /tmp/ycsb_load.txt
 	sleep 5
-    ${ycsb_location}/./bin/ycsb run redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$curdir/$script_output/${NAME}_ycsb_run.txt" &> /tmp/ycsb_run.txt
+    ${ycsb_location}/./bin/ycsb run redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$curdir/$script_output/${script_output_parent}_ycsb_run.txt" &> /tmp/ycsb_run.txt
     cd $curdir
 	#echo "Finished Run!"
 	sleep 4
