@@ -57,14 +57,14 @@ if [ "$#" -ne 5 ]; then
 fi
 
 ### IMport environment variables
-source environment_config.sh
+source ../config/environment_config.sh
 
 
 
 config_filename=$script"/"$5
 
 ###Import Util Functions
-source util.sh
+source ../utils/util.sh
 
 
 ### Make parent script output
