@@ -32,7 +32,7 @@ run_ycsb(){
 
 	kill_monitors
 	ssh $dst_manage pkill -9 redis-server
-	ssh $dst_manage "rm ~/*.rdb"
+	ssh $dst_manage "rm ~/*.rdb" &>/dev/null
 	#echo "Experiment Complete. Ouput located: $script_output/${NAME}_ycsb_run.txt"
 		
 }
