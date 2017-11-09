@@ -97,7 +97,7 @@ set_environment(){
 	fi
 
 
-	ssh $hname "$script/./validate.py -f $config_filename" > $script_output_parent/${hname}_${protocol}_trial${c}_validation.txt
-	ssh $hname "$script/./display_config.py" > $script_output_parent/${hname}_${protocol}_trial${c}_config.txt	
+	ssh $hname "$script/./validate.py -f $config_filename" > $script_output_parent/configs/${hname}_${protocol}_trial${c}_validation.txt
+	ssh $hname "$script/./display_config.py" > $script_output_parent/configs/${hname}_${protocol}_trial${c}_config.txt	
 
 }
