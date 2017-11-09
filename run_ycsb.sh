@@ -73,7 +73,7 @@ mkdir -p $script_output_parent
 
 
 ## Output of script 
-script_output=${script_output_parent}/${script_output_parent}_${protocol}_${bytes}_trial${c}
+script_output=${script_output_parent}/${script_output_parent}_${protocol}_trial${c}
 
 ## Print Environment variables
 echo "Experiment Name: " $NAME  > ${script_output}_env_variables.txt
