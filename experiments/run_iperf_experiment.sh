@@ -5,7 +5,7 @@ result_loc=""
 name=iperf_baseline
 timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
 
-./record_experiment.py ${result_loc}${name}_${timestamp}
+python ../utils/record_experiment.py ${result_loc}${name}_${timestamp}
 
 
 
