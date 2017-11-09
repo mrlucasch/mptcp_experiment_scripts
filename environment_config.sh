@@ -38,3 +38,6 @@ tcp_cubic_file=tcp_cubic
 mptcp_olia_file=mptcp_olia
 mptcp_balia_file=mptcp_balia
 mptcp_wvegas_file=mptcp_wvegas
+
+ycsb_location=/workspace/ycsb-0.12.0
+redis_config_location=/workspace/redis-stable/redis.conf
