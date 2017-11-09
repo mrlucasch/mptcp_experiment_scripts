@@ -50,11 +50,10 @@ protocol=$3
 ycsb_workload=$4
 
 
-
 ###Check for usage
-if [ "$#" -ne 4 ]; then
+if [ "$#" -ne 5 ]; then
 	echo "Usage:"
-	echo "$0 exp_name TrialNum Protocol Workload_script"
+	echo "$0 exp_name TrialNum Protocol Workload_script config_fname"
 	exit
 fi
 
@@ -62,6 +61,7 @@ fi
 source environment_config.sh
 
 
+config_filename=$script"/"$5
 
 ###Import Util Functions
 source util.sh

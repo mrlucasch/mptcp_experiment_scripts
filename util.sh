@@ -5,6 +5,7 @@
 print_environment_variables(){
 
 	#echo "Experiment Name: " $NAME 
+	echo "Configuration File: "$config_filename
 	echo "Subnet1: " $s1
 	echo "Subnet2: " $s2
 	echo "Destination1: " $dst1
@@ -77,24 +78,24 @@ set_environment(){
 	proto=$1
 	hname=$2
 	#check which configuration file to use
-	if [ "$proto" == "mptcp" ]; then
-		config_filename=$script"/$mptcp_file"
-	fi
-	if [ "$proto" == "tcp" ]; then
-		config_filename=$script"/$tcp_file"
-	fi
-	if [ "$proto" == "tcp_cubic" ]; then
-		config_filename=$script"/$tcp_cubic_file"
-	fi
-	if [ "$proto" == "mptcp_olia" ]; then
-		config_filename=$script"/$mptcp_olia_file"
-	fi
-	if [ "$proto" == "mptcp_balia" ]; then
-		config_filename=$script"/$mptcp_balia_file"
-	fi
-	if [ "$proto" == "mptcp_wvegas" ]; then
-		config_filename=$script"/$mptcp_wvegas_file"
-	fi
+	# if [ "$proto" == "mptcp" ]; then
+	# 	config_filename=$script"/$mptcp_file"
+	# fi
+	# if [ "$proto" == "tcp" ]; then
+	# 	config_filename=$script"/$tcp_file"
+	# fi
+	# if [ "$proto" == "tcp_cubic" ]; then
+	# 	config_filename=$script"/$tcp_cubic_file"
+	# fi
+	# if [ "$proto" == "mptcp_olia" ]; then
+	# 	config_filename=$script"/$mptcp_olia_file"
+	# fi
+	# if [ "$proto" == "mptcp_balia" ]; then
+	# 	config_filename=$script"/$mptcp_balia_file"
+	# fi
+	# if [ "$proto" == "mptcp_wvegas" ]; then
+	# 	config_filename=$script"/$mptcp_wvegas_file"
+	# fi
 
 
 	ssh $hname "$script/./validate.py -f $config_filename" > $script_output_parent/configs/${hname}_${protocol}_trial${c}_validation.txt

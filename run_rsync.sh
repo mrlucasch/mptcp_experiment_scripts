@@ -29,14 +29,14 @@ NAME=$1
 bytes=$2
 c=$3
 protocol=$4
-
+#config_filename=$5
 
 
 
 ###Check for usage
-if [ "$#" -ne 4 ]; then
+if [ "$#" -ne 5 ]; then
 	echo "Usage:"
-	echo "$0 exp_name FileSize TrialNum Protocol"
+	echo "$0 exp_name FileSize TrialNum Protocol Config_file"
 	exit
 fi
 
@@ -44,6 +44,8 @@ fi
 source environment_config.sh
 
 
+
+config_filename=$script"/"$5
 
 ###Import Util Functions
 source util.sh
