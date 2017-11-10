@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-
+#/workspace/mptcp_experiment_scripts/results/migrate_baseline/migrate_baseline_mptcp_trial1/../results/migrate_baseline__migration.txt
 #### Useful Functions
 
 
@@ -43,7 +43,7 @@ run_migration(){
 
 	END=$(($SECONDS-$START))
 	echo "Final Time is ==>"$END
-	echo "Final Time is ==>"$END >> $rpath/${script_output_parent}__migration.txt
+	echo "Final Time is ==>"$END >> $rpath/${NAME}__migration.txt
 
 	kill_monitors
 	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${dst_manage} "virsh list" &>> $rpath/${NAME}_migration.txt
