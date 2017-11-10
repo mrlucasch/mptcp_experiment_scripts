@@ -42,13 +42,13 @@ run_migration(){
 	(time virsh migrate --live web qemu+tcp://${dst1}:16509/system --migrateuri tcp://${dst1}:4444) 2>>$rpath/${NAME}_migration.txt
 
 	END=$(($SECONDS-$START))
-	echo "Final Time is ==>"$END
-	echo "Final Time is ==>"$END >> $rpath/${NAME}__migration.txt
+	#echo "Final Time is ==>"$END
+	echo "Final Time is ==>"$END >> $rpath/${NAME}_migration.txt
 
 	kill_monitors
 	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${dst_manage} "virsh list" &>> $rpath/${NAME}_migration.txt
-	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${dst_manage} "virsh destroy web"
-	cd - 
+	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${dst_manage} "virsh destroy web" &>/dev/null
+	cd - >/dev/null
 }
 
 
