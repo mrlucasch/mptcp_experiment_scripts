@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-${name}_${timestamp} mptcp $i 
 
 #### Useful Functions
 
