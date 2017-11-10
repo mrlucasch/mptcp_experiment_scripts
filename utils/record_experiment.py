@@ -7,7 +7,7 @@ import os
 
 fname = sys.argv[1]
 
-os.mkdir( fname, 0755 );
+os.mkdir("../results/"+fname, 0755 );
 #descr = raw_input("Why are you running this experiment? ")
 
 print("Why are you running this experiment?")
@@ -26,7 +26,7 @@ descr = '\n'.join(lines)
 #
 #config = PrettyTable(['Config Variable', 'Value'])
 #f = open(fname+"_raw_config.txt","r")
-outf =  open(fname+"/"+fname+"_readme.txt","w")
+outf =  open("../results/"+fname+"/"+fname+"_readme.txt","w")
 #for line in f:
 #	parts = line.replace("\n","").split(",")
 #	config.add_row(parts)
@@ -39,5 +39,5 @@ outf.write("\n\n\n")
 #print config
 
 
-#outf.close()
+outf.close()
 #f.close()
