@@ -11,7 +11,7 @@ run_rsync(){
 	run_mini_monitors $2
 
 	echo $script_output
-	(time rsync -vW --progress -e "ssh -T -c ${cipher}" /ssd/file_${bytes} $dst1:/ssd/.) &> $script_output/${script_output_parent}_rsync.txt
+	(time rsync -vW --progress -e "ssh -T -c ${cipher}" /ssd/file_${bytes} $dst1:/ssd/.) &> $script_output/${NAME}_rsync.txt
 	kill_monitors
 	ssh $dst_manage "rm -rf /ssd/file_${bytes}G"
 
@@ -57,8 +57,8 @@ mkdir -p $script_output_parent/configs
 
 
 ## Output of script 
-script_output=${script_output_parent}/${script_output_parent}_${protocol}_${bytes}_trial${c}
-script_config_output=${script_output_parent}/configs/${script_output_parent}_${protocol}_${bytes}_trial${c}
+script_output=${script_output_parent}/${NAME}_${protocol}_${bytes}_trial${c}
+script_config_output=${script_output_parent}/configs/${NAME}_${protocol}_${bytes}_trial${c}
 
 ## Print Environment variables
 echo "Experiment Name: " $NAME  > ${script_config_output}_env_variables.txt

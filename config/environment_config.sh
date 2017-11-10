@@ -24,20 +24,16 @@ congestion1_manage=192.168.245.92
 congestion2_manage=192.168.245.96
 
 
-script_output_parent=$NAME
+script_output_parent=../results/$NAME
 
 trial=5
 
 script=/mptcp
-
-mptcp_file=mptcp_send
-tcp_file=tcp_send
+vm_locations=/vms/mptcp_dc_vms
+vm_login=ubuntu@web
+vm_name=web.xml
 cipher="aes128-gcm@openssh.com"
 
-tcp_cubic_file=tcp_cubic
-mptcp_olia_file=mptcp_olia
-mptcp_balia_file=mptcp_balia
-mptcp_wvegas_file=mptcp_wvegas
 
 ycsb_location=/workspace/ycsb-0.12.0
 redis_config_location=/workspace/redis-stable/redis.conf

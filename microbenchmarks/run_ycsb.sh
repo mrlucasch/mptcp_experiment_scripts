@@ -14,7 +14,8 @@ run_ycsb(){
 	
 	ssh $dst_manage "screen -d -m redis-server $redis_config_location"
 	sleep 2
-	curdir=$(pwd)	
+	#curdir=$(pwd)	
+	rpath=$(readlink -f $script_output)
 	run_mini_monitors $1
 
 	cp $ycsb_workload $1/workload.txt
@@ -23,9 +24,9 @@ run_ycsb(){
 	# echo "Running YCSB"
 	echo $1
 	cd $ycsb_location
-    ${ycsb_location}/./bin/ycsb load redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$curdir/$script_output/${script_output_parent}_ycsb_load.txt" &> /tmp/ycsb_load.txt
+    ${ycsb_location}/./bin/ycsb load redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$rpath/${NAME}_ycsb_load.txt" &> /tmp/ycsb_load.txt
 	sleep 5
-    ${ycsb_location}/./bin/ycsb run redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$curdir/$script_output/${script_output_parent}_ycsb_run.txt" &> /tmp/ycsb_run.txt
+    ${ycsb_location}/./bin/ycsb run redis -s -P $ycsb_workload -p "redis.host=$dst1" -p "redis.port=6379" -p "exportfile=$rpath/${NAME}_ycsb_run.txt" &> /tmp/ycsb_run.txt
     cd $curdir
 	#echo "Finished Run!"
 	sleep 4
@@ -73,8 +74,8 @@ mkdir -p $script_output_parent/configs
 
 
 ## Output of script 
-script_output=${script_output_parent}/${script_output_parent}_${protocol}_trial${c}
-script_config_output=${script_output_parent}/configs/${script_output_parent}_${protocol}_trial${c}
+script_output=${script_output_parent}/${NAME}_${protocol}_trial${c}
+script_config_output=${script_output_parent}/configs/${NAME}_${protocol}_trial${c}
 ## Print Environment variables
 echo "Experiment Name: " $NAME  > ${script_config_output}_env_variables.txt
 echo "YCSB Workload: " $ycsb_workload >> ${script_config_output}_env_variables.txt

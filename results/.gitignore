@@ -1,0 +1,7 @@
+##IGNORE ALL FILES
+*
+
+
+# EXCEPT README
+!README
+!.gitignore
