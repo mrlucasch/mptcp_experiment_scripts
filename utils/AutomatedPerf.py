@@ -13,6 +13,9 @@ random.seed(0)
 bwlist=["5G","7.5G","10G"]
 timelist=["1","5","10"]
 destination=sys.argv[1]
+destination2=sys.argv[2]
+dests = [destination,destination2]
+ports = ["5001","5002"]
 childthreads=[]
 ##
 def threadcode(destination,bw,time,port):
@@ -21,11 +24,13 @@ def threadcode(destination,bw,time,port):
 	print  output, err
 
 while 1:
-	for port in ["5001","5002"]:
+	for index in range(0,len(ports)):
+	    port = ports[index]
+	    dest = dests[index]
 	    bw=random.choice(bwlist)	     
 	    time=random.choice(timelist)
 
-	    t=Process(target=threadcode,name="portNumber=%s"%(port),args=(destination,bw,time,port))
+	    t=Process(target=threadcode,name="portNumber=%s"%(port),args=(dest,bw,time,port))
 		#t.setDaemon(1)            
 	    t.start()
 	    print t            
