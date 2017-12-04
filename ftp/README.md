@@ -7,6 +7,12 @@ This is a non automated workload. We simply run the monitors manually and then l
 
 # Procedure
 
+Start the ftp server on server node
+```
+sudo service vsftpd start
+```
+
+
 Start the monitors
 ```
 ../utils/./manual_exp.sh start 1 mptcp ftp_150G_baseline
