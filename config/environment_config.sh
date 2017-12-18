@@ -31,7 +31,7 @@ trial=5
 script=/mptcp
 vm_locations=/vms/mptcp_dc_vms
 vm_login=ubuntu@web
-vm_name=web.xml
+vm_name=web32.xml
 cipher="aes128-gcm@openssh.com"
 
 

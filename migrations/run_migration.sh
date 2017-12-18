@@ -27,15 +27,53 @@ run_migration(){
 	cd $vm_locations
 	virsh create $vm_name &>/dev/null
 
-	sleep 10
-	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $vm_login "./clean.sh" &>/dev/null
-	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $vm_login screen -d -m "~/dirty_script/fill 15" &>/dev/null
-	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $vm_login screen -d -m "./compile.sh" &>/dev/null
+	sleep 15
+	thresh=15G
+	fill_val=16
+	if [ "$vm_name" == "web60.xml" ];
+	then
+    	thresh=58G
+
+		fill_val=60
+
+	fi
+	if [ "$vm_name" == "web58.xml" ];
+	then
+    	thresh=56G
+
+		fill_val=58
+
+	fi
 
 
-	sleep 5
+	if [ "$vm_name" == "web32.xml" ];
+	then
+    	thresh=31G
+		fill_val=32
+	fi
+
+	if [ "$vm_name" == "web.xml" ];
+	then
+    	thresh=15G
+		fill_val=16
+	fi
+
+
+	#ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes -o PasswordAuthentication=no $vm_login "./clean.sh" &>/dev/null
+	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes -o PasswordAuthentication=no $vm_login screen -d -m "~/dirty_script/fill $fill_val" &>/dev/null
+	#ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes -o PasswordAuthentication=no $vm_login screen -d -m "./compile.sh" &>/dev/null
+
+
+	sleep 2
+	web_mem="0"
+	while [ "$web_mem" != "$thresh" ];
+	do
+    	web_mem="$(ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes -o PasswordAuthentication=no $vm_login free -mh | grep 'Mem:' | awk '{print $3}')"
+    	#echo $web_mem
+    	sleep 6
+	done
 	#echo "Workloads started successfully"
-
+	sleep 2
 	START=$SECONDS
 
 

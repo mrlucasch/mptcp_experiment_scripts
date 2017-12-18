@@ -58,8 +58,9 @@ if [[ "$op" == "start" ]];then
 	touch ${parent}/${direct}/${parent}_ftp.txt
 	ssh $server "${scripts}/display_config.py " > ${parent}/${direct}/${parent}_${server}_config.txt
 	ssh $client "${scripts}/display_config.py " > ${parent}/${direct}/${parent}_${client}_config.txt
-	ifstat -bnt > ${parent}/${direct}/${parent}_ifstat.txt & 
-	vmstat -tn 2 > ${parent}/${direct}/${parent}_vmstat.txt & 
+	#ifstat -bnt > ${parent}/${direct}/${parent}_ifstat.txt & 
+	#vmstat -tn 2 > ${parent}/${direct}/${parent}_vmstat.txt & 
+	dstat -t -d -D sda -n -N enp5s0f0,enp5s0f1,total -c -l -y --output ${parent}/${direct}/${parent}_dstat.csv 5 &>/dev/null &
 	
 	echo "Put results here: ${parent}/${direct}/${parent}_ftp.txt"
 fi
@@ -68,6 +69,7 @@ if [[ "$op" == "stop" ]]; then
 	echo "Stopping"
 	sudo pkill -15 ifstat
 	sudo pkill -15 vmstat
+	sudo pkill -15 dstat
 	
 	ps -ef | grep vmstat
 	ps -ef | grep ifstat

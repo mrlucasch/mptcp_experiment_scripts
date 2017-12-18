@@ -13,7 +13,7 @@ run_rsync(){
 	echo $script_output
 	(time rsync -vW --progress -e "ssh -T -c ${cipher}" /ssd/file_${bytes} $dst1:/ssd/.) &> $script_output/${NAME}_rsync.txt
 	kill_monitors
-	ssh $dst_manage "rm -rf /ssd/file_${bytes}G"
+	ssh $dst_manage "rm -rf /ssd/file_${bytes}"
 
 
 
